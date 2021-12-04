@@ -56,7 +56,7 @@ class TokenInfo(collections.namedtuple('TokenInfo', 'type string start end line'
         else:
             return self.type
 
-def group(*choices): return '(' + '|'.join(choices) + ')'
+def group(*choices): return '(' + '|'.join(choices) + ')'#*choices表示不能传入常数如1，只能通过group(choices=1)传入，1是例子
 def any(*choices): return group(*choices) + '*'
 def maybe(*choices): return group(*choices) + '?'
 
@@ -78,7 +78,7 @@ Pointfloat = group(r'[0-9](?:_?[0-9])*\.(?:[0-9](?:_?[0-9])*)?',
 Expfloat = r'[0-9](?:_?[0-9])*' + Exponent
 Floatnumber = group(Pointfloat, Expfloat)
 Imagnumber = group(r'[0-9](?:_?[0-9])*[jJ]', Floatnumber + r'[jJ]')
-Number = group(Imagnumber, Floatnumber, Intnumber)
+Number = group(Imagnumber, Floatnumber, Intnumber)#NUMBER是Imagnumber等构成的group函数返回的字符串对象
 
 # Return the empty string, plus all of the valid string prefixes.
 def _all_string_prefixes():
