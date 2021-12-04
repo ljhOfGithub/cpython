@@ -56,7 +56,8 @@ class TokenInfo(collections.namedtuple('TokenInfo', 'type string start end line'
         else:
             return self.type
 
-def group(*choices): return '(' + '|'.join(choices) + ')'#*choices表示不能传入常数如1，只能通过group(choices=1)传入，1是例子
+def group(*choices): return '(' + '|'.join(choices) + ')'
+#定义可变参数和定义一个list或tuple参数相比，仅仅在参数前面加了一个*号。在函数内部，参数numbers接收到的是一个tuple，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括0个参数
 def any(*choices): return group(*choices) + '*'
 def maybe(*choices): return group(*choices) + '?'
 
@@ -65,7 +66,7 @@ def maybe(*choices): return group(*choices) + '?'
 Whitespace = r'[ \f\t]*'
 Comment = r'#[^\r\n]*'
 Ignore = Whitespace + any(r'\\\r?\n' + Whitespace) + maybe(Comment)
-Name = r'\w+'
+Name = r'\w+'#匹配字母数字下划线，懒惰模式匹配
 
 Hexnumber = r'0[xX](?:_?[0-9a-fA-F])+'
 Binnumber = r'0[bB](?:_?[01])+'
